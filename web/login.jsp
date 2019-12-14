@@ -38,7 +38,7 @@
                         <td><p><input type="password" name="password" maxlength="10" size="15"></p></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><p align="center"><input class='btn btn-outline-primary' type="submit" value="Login"></p></td>
+                        <td colspan="2"><p align="center"><input class='btn btn-outline-primary' type="button" id="n" value="Login"></p></td>
                         <td colspan="2"><p align="center"><input class='btn btn-outline-secondary' type="button" id="q" value="Quick Login"></p></td>
                     </tr>
                 </table>
@@ -48,9 +48,11 @@
         <script>
             $("#q").click(function(){
                 $("input[name='action']").val("quickLogin");
-                setTimeout(function(){
-                    $("#login").submit();
-                },1000)
+                 $("#login").submit();
+            });
+             $("#n").click(function(){
+                $("input[name='action']").val("authenticate");
+                 $("#login").submit();
             });
         </script>
 
