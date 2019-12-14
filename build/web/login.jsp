@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <td><p align="right">password : </p></td>
-                        <td><p><input type="password" name="password" maxlength="10" size="15"></p></td>
+                        <td><p><input type="password" name="pwd" maxlength="10" size="15"></p></td>
                     </tr>
                     <tr>
                         <td colspan="2"><p align="center"><input class='btn btn-outline-primary' type="submit" value="Login"></p></td>

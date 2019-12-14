@@ -29,6 +29,7 @@ public class ProjDB {
         this.dbUser = dbUser;
         this.dbPassword = dbPassword;
     }
+    
     public User login(String user, String pwd) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
