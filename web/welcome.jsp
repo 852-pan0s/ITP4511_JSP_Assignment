@@ -13,13 +13,13 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <jsp:useBean id="user" class="ict.bean.User" scope="session" />
-        <b> Hello,   <jsp:getProperty name="user" property="username" /></b>
-        <p>Welcome to the ICT</p>
-        <form method="post" action="login">
-            <input type="hidden" name="action" value="logout">
-            <input type="submit" valye="Logout" value="Logout" name="logoutButton">
-        </form>
-        <a href="RollCallController?action=rollCall&uid=<jsp:getProperty name="user" property="uid" />">Roll Call</a><br>
+        <div class='container'>
+            <b> Hello,   <jsp:getProperty name="user" property="username" /></b>
+            <p>Welcome to the Class Attendance System</p>
+            <form method="post" action="login">
+                <input type="hidden" name="action" value="logout">
+                <input type="submit" class='btn btn-outline-danger' valye="Logout" value="Logout" name="logoutButton">
+            </form>
+        </div>
     </body>
 </html>
