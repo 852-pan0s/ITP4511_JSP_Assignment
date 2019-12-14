@@ -34,10 +34,11 @@ public class TestQueryUser {
         for (User u : list) {
             System.out.println("ID: " + u.getUid());
         }
-        Classes c = db.queryClassByTid("jesse");
-        System.out.println("Class ID: " +c.getTid());
-        for(Student s: c.getStudents()){
-        System.out.println("Studnet: " +s.getFirstName());    
-        }
+//        Classes c = db.queryClassByTid("jesse");
+//        System.out.println("Class ID: " +c.getTid());
+//        for(Student s: c.getStudents()){
+//        System.out.println("Studnet: " +s.getFirstName());    
+//        }
+        db.saveAttendance("ITP4507", "180000000", "08:30:00", "2019-12-14", 0);
     }
 }
