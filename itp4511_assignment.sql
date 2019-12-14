@@ -41,7 +41,9 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`cid`, `sid`, `attended_time`, `class_day`, `is_late`) VALUES
-('ITP4511', '180000000', '13:41:00', '2019-12-13', 1),
+('ITP4507', '180000000', '08:30:00', '2019-12-14', 0),
+('ITP4507', '180000001', '08:30:00', '2019-12-14', 0),
+('ITP4511', '180000000', '13:41:00', '2019-12-13', 0),
 ('ITP4511', '180000001', '13:40:00', '2019-12-13', 0),
 ('ITP4511', '180099876', '13:30:00', '2019-12-13', 0);
 
@@ -61,11 +63,17 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`cid`, `sid`) VALUES
+('ITP4507', '180000000'),
+('ITP4507', '180000001'),
 ('ITP4511', '180000000'),
 ('ITP4511', '180000001'),
 ('ITP4511', '180000002'),
 ('ITP4511', '180000003'),
-('ITP4511', '180099876');
+('ITP4511', '180099876'),
+('ITP4909', '180000000'),
+('ITP4909', '180000003'),
+('ITP4909', '180000004'),
+('ITP4909', '180000005');
 
 -- --------------------------------------------------------
 
@@ -84,7 +92,9 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`cid`, `name`, `hours`) VALUES
-('ITP4511', 'Enterprise Systems Development', '60');
+('ITP4507', 'Contemporary Topics in Software Engineering', '60'),
+('ITP4511', 'Enterprise Systems Development', '60'),
+('ITP4909', 'Object Oriented Technology', '52');
 
 -- --------------------------------------------------------
 
@@ -107,6 +117,8 @@ INSERT INTO `student` (`sid`, `firstName`, `lastName`) VALUES
 ('180000001', 'Andy', 'Chan'),
 ('180000002', 'Kitty', 'Wong'),
 ('180000003', 'John', 'Wong'),
+('180000004', 'Kit', 'Lee'),
+('180000005', 'Leon', 'J.'),
 ('180099876', 'Ngai Kuen', 'POON');
 
 -- --------------------------------------------------------
@@ -145,7 +157,9 @@ CREATE TABLE `teach_class` (
 --
 
 INSERT INTO `teach_class` (`cid`, `tid`, `start_time`, `end_time`) VALUES
-('ITP4511', 'jesse', '15:30:00', '17:30:00');
+('ITP4507', 'jesse', '08:30:00', '10:30:00'),
+('ITP4511', 'jesse', '15:30:00', '17:30:00'),
+('ITP4909', 'jesse', '09:00:00', '11:30:00');
 
 -- --------------------------------------------------------
 
@@ -165,10 +179,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uid`, `username`, `password`, `type`) VALUES
-('180000000', 'test2', 'test2', 1),
-('180000001', 'test3', 'test3', 1),
-('180000002', 'test4', 'test4', 1),
-('180000003', 'test5', 'test5', 1),
+('180000000', 'test2', 'test', 1),
+('180000001', 'test3', 'test', 1),
+('180000002', 'test4', 'test', 1),
+('180000003', 'test5', 'test', 1),
+('180000004', 'test', 'test', 1),
+('180000005', 'test', 'test', NULL),
 ('180099876', 'test', 'test', 1),
 ('admin', 'admin', 'admin', 3),
 ('jesse', 'jesse', 'jesse', 2);

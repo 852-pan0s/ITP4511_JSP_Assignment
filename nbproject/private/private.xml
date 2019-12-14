@@ -3,6 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/roll_call.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/bean/User.java</file>
+=======
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/header.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/welcome.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/roll_call.jsp</file>
@@ -20,6 +24,7 @@
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/index.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/src/java/ict/bean/Attendance.java</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/testing.jsp</file>
+>>>>>>> ae19d2ee261ad831cac0215c5ec7810fa474e60f
         </group>
     </open-files>
 </project-private>

@@ -29,8 +29,10 @@ public class RollCallController extends HttpServlet {
     private ProjDB db;
 
     public void init() {
-        /* initialize a brandDB*/
-        db = new ProjDB();
+        String dbUser = this.getServletContext().getInitParameter("dbUser");
+        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+        db = new ProjDB(dbUrl, dbUser, dbPassword);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
