@@ -22,33 +22,53 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author panos
  */
-
 // map the servlet to url, brandController
 @WebServlet(name = "RollCallController", urlPatterns = {"/RollCallController"})
 public class RollCallController extends HttpServlet {
 
     private ProjDB userDb;
 
-    public void init() { 
-    /* initialize a brandDB*/ 
+    public void init() {
+        /* initialize a brandDB*/
         userDb = new ProjDB();
     }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);;
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String action = request.getParameter("action");
         String tid = request.getParameter("uid");
         if ("rollCall".equalsIgnoreCase(action)) {
             Classes roll = userDb.queryClassByTid(tid);
-//            PrintWriter out = response.getWriter();
-//        out.println("<html>");
-//        out.println("<head><title>radio button</title></head>");
-//        out.println("<body>");
-//        out.println("your company size :" + tid);
-//        out.println("</body></html>");
+            PrintWriter out = response.getWriter();
+            out.println("<html>");
+            out.println("<head><title>radio button</title></head>");
+            out.println("<body>");
+            out.println("your company size :" + tid);
+            out.println("</body></html>");
             request.setAttribute("roll", roll);
             RequestDispatcher rd = this.getServletContext()
                     .getRequestDispatcher("/roll_call.jsp");
             rd.forward(request, response);
+        } else if ("save".equalsIgnoreCase(action)) {
+            String[] attendTime = request.getParameterValues("attendTime");
+            String[] uid = request.getParameterValues("uid");
+            PrintWriter out = response.getWriter();
+            out.println("<html>");
+            out.println("<head><title>radio button</title></head>");
+            out.println("<body>");
+            for (String s : attendTime) {
+                out.println("your company size :" + s);
+            }
+
+            out.println("</body></html>");
         } else {
             PrintWriter out = response.getWriter();
             out.println("NO such action :" + action);

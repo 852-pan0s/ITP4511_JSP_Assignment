@@ -18,17 +18,9 @@ public class Classes {
     private String startTime;
     private String endTime;
     private String day;
+    private String name;
 
     public Classes() {
-    }
-
-    public Classes(String cid, String tid, ArrayList<Student> students, String startTime, String endTime, String day) {
-        this.cid = cid;
-        this.tid = tid;
-        this.students = students;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.day = day;
     }
 
     public String getCid() {
@@ -78,6 +70,13 @@ public class Classes {
     public void setDay(String day) {
         this.day = day;
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
 }
