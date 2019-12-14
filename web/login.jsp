@@ -26,7 +26,7 @@
         <div class="container">
             <h2>Login</h2>
             <br>
-            <form method="post" action="login">
+            <form method="post" action="login" id="login">
                 <input type="hidden" name="action" value="authenticate">
                 <table border="0">
                     <tr>
@@ -39,10 +39,20 @@
                     </tr>
                     <tr>
                         <td colspan="2"><p align="center"><input class='btn btn-outline-primary' type="submit" value="Login"></p></td>
+                        <td colspan="2"><p align="center"><input class='btn btn-outline-secondary' type="button" id="q" value="Quick Login"></p></td>
                     </tr>
                 </table>
             </form>
         </div>
+        
+        <script>
+            $("#q").click(function(){
+                $("input[name='action']").val("quickLogin");
+                setTimeout(function(){
+                    $("#login").submit();
+                },1000)
+            });
+        </script>
 
     </body>
 </html>

@@ -31,18 +31,32 @@ public class LoginController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (!isAuthenticated(request)
-                && !("authenticate".equals(action))) {
-            doLogin(request, response);
-            return;
-        }
+//        if (!isAuthenticated(request)
+//                && !("authenticate".equals(action))) {
+//            doLogin(request, response);
+//            return;
+//        }
         if ("authenticate".equals(action)) {
             doAuthenticate(request, response);
         } else if ("logout".equals(action)) {
             doLogout(request, response);
+        } else if ("quickLogin".equals(action)) {
+            skipAuthenticate(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
         }
+    }
+
+    private void skipAuthenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User u = new User("180000000", "Wan Tung Ling", "test", 1);
+        // obtain seesion from request
+        HttpSession session = request.getSession(true);
+        // store the userInfo to the session
+        session.setAttribute("user", u);
+        String targetURL = "welcome.jsp";
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/" + targetURL);
+        rd.forward(request, response);
     }
 
     private void doAuthenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

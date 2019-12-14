@@ -15,7 +15,7 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value></param-value>
+        <param-value>123</param-value>
     </context-param>
 
     <session-config>

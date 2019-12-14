@@ -56,6 +56,8 @@ public class ProjDB {
             while (ex != null) {
                 ex.printStackTrace();
                 ex = ex.getNextException();
+                System.out.println(ex+"");
+                System.out.println("fk");
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -321,6 +323,7 @@ public class ProjDB {
         }
         return isSuccess;
     }
+    
     
 
 
