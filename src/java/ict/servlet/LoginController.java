@@ -98,6 +98,5 @@ public class LoginController extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new ProjDB(dbUrl, dbUser, dbPassword);
-        db.addUserInfo("1", "xyz", "123");
     }
 }

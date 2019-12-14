@@ -30,10 +30,6 @@ public class ProjDB {
         this.dbPassword = dbPassword;
     }
 
-    public ProjDB() {
-        this("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "");
-    }
-
     public User login(String user, String pwd) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -326,5 +322,7 @@ public class ProjDB {
         }
         return isSuccess;
     }
+    
+
 
 }
