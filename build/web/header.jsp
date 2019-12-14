@@ -49,7 +49,7 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #87E4FF; margin-bottom: 20px;">
-    <a class="navbar-brand" href="#">Class Attendance System </a>
+    <a class="navbar-brand" href="welcome.jsp">Class Attendance System </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
