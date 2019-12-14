@@ -31,7 +31,8 @@ public class ProjDB {
     }
 
     public ProjDB() {
-        this("jdbc:mysql://localhost/itp4511_assignment", "root", "");
+//        this("jdbc:mysql://localhost/itp4511_assignment", "root", "");
+        this("jdbc:mysql://localhost:3306/itp4511_assignment", "root", "");
     }
 
     public User login(String user, String pwd) {

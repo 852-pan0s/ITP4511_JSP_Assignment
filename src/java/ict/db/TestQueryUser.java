@@ -23,6 +23,7 @@ public class TestQueryUser {
     public static void main(String[] arg) {
 
         // Connect DB
+//        String url = "jdbc:mysql://localhost/itp4511_assignment";
         String url = "jdbc:mysql://localhost:3306/itp4511_assignment";
         String username = "root";
         String password = "";
