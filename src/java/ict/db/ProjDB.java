@@ -146,7 +146,7 @@ public class ProjDB {
         return list;
     }
 
-    public Classes queryClassByTid(String tid) {
+    public Classes queryClassByTidCid(String tid, String cid) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
 
@@ -154,22 +154,23 @@ public class ProjDB {
         try {
             //1. get Connection
             cnnct = getConnection();;
-            String preQueryStatement = "SELECT * from teach_class where tid =?";
+            String preQueryStatement = "SELECT c.cid, name, t.tid, start_time, end_time  from course c, teach_class t where t.cid=c.cid and tid =? and c.cid = ?";
             //2. get the prepare Statement
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //3.update the placehoders with username and pwd
             pStmnt.setString(1, tid);
+            pStmnt.setString(2, cid);
             //4 execctue the query and assign to the result
             ResultSet rs = pStmnt.executeQuery();
             c = new Classes();
             if (rs.next()) {
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                java.util.Date date = new java.util.Date();
-                c.setDay(dateFormat.format(date));
+
+                c.setDay(getToday());
                 c.setStartTime(rs.getString("start_time"));
                 c.setEndTime(rs.getString("end_time"));
                 c.setCid(rs.getString("cid"));
                 c.setTid(rs.getString("tid"));
+                c.setName(rs.getString("name"));
                 c.setStudents(queryStudentByCid(c.getCid()));
             }
             pStmnt.close();
@@ -183,6 +184,52 @@ public class ProjDB {
             ex.printStackTrace();
         }
         return c;
+    }
+
+    public ArrayList<Classes> queryClassByTid(String tid) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        ArrayList<Classes> list = new ArrayList<Classes>();
+        Classes c = null;
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT c.cid, name, t.tid, start_time, end_time  from course c, teach_class t where t.cid=c.cid and tid =?";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //3.update the placehoders with username and pwd
+            pStmnt.setString(1, tid);
+            //4 execctue the query and assign to the result
+            ResultSet rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                c = new Classes();
+                c.setDay(getToday());
+                c.setStartTime(rs.getString("start_time"));
+                c.setEndTime(rs.getString("end_time"));
+                c.setCid(rs.getString("cid"));
+                c.setTid(rs.getString("tid"));
+                c.setName(rs.getString("name"));
+                c.setStudents(queryStudentByCid(c.getCid()));
+                list.add(c);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+
+    public static String getToday() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = new java.util.Date();
+        return dateFormat.format(date);
     }
 
     public ArrayList<Student> queryStudentByCid(String cid) {
@@ -221,6 +268,63 @@ public class ProjDB {
             ex.printStackTrace();
         }
         return list;
+    }
+
+    public boolean saveAttendance(String cid, String sid, String aTime, String day, int late) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+            cnnct = getConnection();
+
+            //check 
+            String preQueryStatement = "SELECT * FROM attendance WHERE cid = ? AND sid = ? and class_day= ?";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //3.update the placehoders with username and pwd
+            pStmnt.setString(1, cid);
+            pStmnt.setString(2, sid);
+            pStmnt.setString(3, day);
+            //4 execctue the query and assign to the result
+            ResultSet rs = pStmnt.executeQuery();
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                preQueryStatement = "UPDATE attendance set attended_time = ?, is_late = ? WHERE cid = ? and sid = ? and class_day = ?";
+                pStmnt = cnnct.prepareStatement(preQueryStatement);
+                pStmnt.setString(1, aTime);
+                pStmnt.setInt(2, late);
+                pStmnt.setString(3, cid);
+                pStmnt.setString(4, sid);
+                pStmnt.setString(5, day);
+                int rowCount = pStmnt.executeUpdate();
+                if (rowCount >= 1) {
+                    isSuccess = true;
+                }
+            } else {
+                preQueryStatement = "INSERT INTO attendance VALUES (?, ?, ?, ?, ?)";
+                pStmnt = cnnct.prepareStatement(preQueryStatement);
+                pStmnt.setString(1, cid);
+                pStmnt.setString(2, sid);
+                pStmnt.setString(3, aTime);
+                pStmnt.setString(4, day);
+                pStmnt.setInt(5, late);
+                int rowCount = pStmnt.executeUpdate();
+                if (rowCount >= 1) {
+                    isSuccess = true;
+                }
+                System.out.println(preQueryStatement);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return isSuccess;
     }
 
 }

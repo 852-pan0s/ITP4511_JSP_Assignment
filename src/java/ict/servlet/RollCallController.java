@@ -26,11 +26,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "RollCallController", urlPatterns = {"/RollCallController"})
 public class RollCallController extends HttpServlet {
 
-    private ProjDB userDb;
+    private ProjDB db;
 
     public void init() {
         /* initialize a brandDB*/
-        userDb = new ProjDB();
+        db = new ProjDB();
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,8 +45,9 @@ public class RollCallController extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         String tid = request.getParameter("uid");
+        String cid = request.getParameter("cid");
         if ("rollCall".equalsIgnoreCase(action)) {
-            Classes roll = userDb.queryClassByTid(tid);
+            Classes roll = db.queryClassByTidCid(tid, cid);
             PrintWriter out = response.getWriter();
             out.println("<html>");
             out.println("<head><title>radio button</title></head>");
@@ -59,16 +60,42 @@ public class RollCallController extends HttpServlet {
             rd.forward(request, response);
         } else if ("save".equalsIgnoreCase(action)) {
             String[] attendTime = request.getParameterValues("attendTime");
-            String[] uid = request.getParameterValues("uid");
+            String[] students = request.getParameterValues("uid");
+            String day = request.getParameter("day");
+            String sTime = request.getParameter("sTime");
             PrintWriter out = response.getWriter();
             out.println("<html>");
             out.println("<head><title>radio button</title></head>");
             out.println("<body>");
-            for (String s : attendTime) {
-                out.println("your company size :" + s);
-            }
 
+            for (int i = 0; i < students.length; i++) {
+                if (attendTime[i].equals("")) {
+                    continue;
+                }
+                String hr = sTime.substring(0, 2);
+                String min = sTime.substring(3, 5);
+                int time = Integer.parseInt((hr + min));
+                hr = attendTime[i].substring(0, 2);
+                min = attendTime[i].substring(3, 5);
+                int aTime = Integer.parseInt((hr + min));
+                int late = (aTime - time) > 10 ? 1 : 0;
+
+                db.saveAttendance(cid, students[i], attendTime[i], day, late);
+                out.printf("%s, %s, %s, %s, %s<br>", cid, students[i], attendTime[i], day, late);
+            }
             out.println("</body></html>");
+            tid = request.getParameter("tid");
+            Classes roll = db.queryClassByTidCid(tid, cid);
+            request.setAttribute("roll", roll);
+            RequestDispatcher rd = this.getServletContext()
+                    .getRequestDispatcher("/roll_call.jsp");
+            rd.forward(request, response);
+        } else if ("classList".equalsIgnoreCase(action)) {
+            ArrayList<Classes> classList = db.queryClassByTid(tid);
+            request.setAttribute("classList", classList);
+            RequestDispatcher rd = this.getServletContext()
+                    .getRequestDispatcher("/classList.jsp");
+            rd.forward(request, response);
         } else {
             PrintWriter out = response.getWriter();
             out.println("NO such action :" + action);

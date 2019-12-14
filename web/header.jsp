@@ -13,8 +13,43 @@
 
 <jsp:useBean id="user" class="ict.bean.User" scope="session" />
 
+<style>
+
+    .tr-hover {
+        background-color: #ffffff;
+        transition: background-color 0.5s;
+    }
+
+    .tr-hover:hover {
+        background-color: #d8d8d8;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0;
+        /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        /* Firefox */
+    }
+
+    div.jumbotron.jumbotron-fluid {
+        background-color: rgb(255, 255, 255);
+        box-shadow: none;
+        transition: box-shadow 0.25s;
+    }
+
+    div.jumbotron.jumbotron-fluid:hover {
+        box-shadow: 0px 0px 10px 5px rgb(216, 216, 216);
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #87E4FF; margin-bottom: 20px;">
-    <a class="navbar-brand" href="#">Class Attendance System </a>
+    <a class="navbar-brand" href="welcome.jsp">Class Attendance System </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,7 +60,7 @@
                 if (user.getType() == 1) {
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>View my attendance <span class='sr-only'>(current)</span></a></li>");
                 } else if (user.getType() == 2) {
-                    out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>Roll Call<span class='sr-only'>(current)</span></a></li>");
+                    out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='RollCallController?action=classList&uid=" + user.getUid() + "'>Roll Call<span class='sr-only'>(current)</span></a></li>");
                 } else if (user.getType() == 3) {
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>Manage Account<span class='sr-only'>(current)</span></a></li>");
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>Manage Course<span class='sr-only'>(current)</span></a></li>");
@@ -35,4 +70,3 @@
             %>
     </div>
 </nav>
-      
