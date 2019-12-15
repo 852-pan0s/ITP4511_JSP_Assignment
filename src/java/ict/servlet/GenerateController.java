@@ -5,24 +5,23 @@
  */
 package ict.servlet;
 
-import ict.bean.Classes;
-import ict.bean.User;
 import ict.bean.Attendance;
 import ict.db.ProjDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author tuningwan
  */
-@WebServlet(name = "AttendanceController", urlPatterns = {"/AttendanceController"})
-public class AttendanceController extends HttpServlet {
+@WebServlet(name = "GenerateController", urlPatterns = {"/GenerateController"})
+public class GenerateController extends HttpServlet {
 
     private ProjDB db;
 
@@ -42,17 +41,14 @@ public class AttendanceController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        
         ArrayList<Attendance> atlist = new ArrayList();
         atlist.add(new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-13", 0));
         atlist.add(new Attendance("ITP4511", "180000000", "13:51:00", "2019-12-14", 1));
         atlist.add(new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-15", 0));
         
-        // obtain seesion from request
-//        HttpSession session = request.getSession(true);
-        // store the userInfo to the session
-        request.setAttribute("atlist", atlist);
+        
+        
+//        request.setAttribute("atlist", atlist);
         String targetURL = "attendance.jsp";
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/" + targetURL);
