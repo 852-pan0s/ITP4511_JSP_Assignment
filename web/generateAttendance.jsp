@@ -18,9 +18,6 @@
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
                         <h1 class="display-4">Generate Attendance Report</h1>
-                        <button type="button" class="btn btn-primary" id="btn-new-style" href="#" role="button" data-toggle="modal"
-                                data-target="#newStyleModal" data-toggle="tooltip" data-placement="right"
-                                title="Click to add a new style.">Show Schedule</button>
                         <hr class="my-4">
                         <table class="table table-hover" id="style-list">
                             <thead class="thead-dark">
