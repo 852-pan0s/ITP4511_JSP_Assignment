@@ -69,16 +69,15 @@ public class AttendanceController extends HttpServlet {
 //        Attendance at2 = new Attendance("ITP4511", "180000000", "13:51:00", "2019-12-14", 1);
 //        Attendance at3 = new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-15", 0);
         
-//        ArrayList<Attendance> atlist = new ArrayList();
-//        atlist.add(at);
-//        atlist.add(at2);
-//        atlist.add(at3);
-//        atlist.add(a);
-
+        ArrayList<Attendance> atlist = new ArrayList();
+        atlist.add(new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-13", 0));
+        atlist.add(new Attendance("ITP4511", "180000000", "13:51:00", "2019-12-14", 1));
+        atlist.add(new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-15", 0));
+        
         // obtain seesion from request
-        HttpSession session = request.getSession(true);
+//        HttpSession session = request.getSession(true);
         // store the userInfo to the session
-        session.setAttribute("attendance", a);
+        request.setAttribute("atlist", atlist);
         String targetURL = "attendance.jsp";
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/" + targetURL);

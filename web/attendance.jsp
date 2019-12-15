@@ -14,8 +14,7 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <%--<jsp:useBean id="atlist" scope="request"  class="java.util.ArrayList<ict.bean.Attendance>" />--%>
-        <jsp:useBean id="a" scope="request"  class="ict.bean.Attendance" />
+        <jsp:useBean id="atlist" scope="request"  class="java.util.ArrayList<ict.bean.Attendance>" />
         <div class="container">
             <form method="post" action="">
                 <div class="jumbotron jumbotron-fluid">
@@ -31,23 +30,21 @@
                                     <th>Code</th>
                                     <th>Attended Time</th>
                                     <th>Attended Date</th>
-                                    <th>Puntual</th>
+                                    <th>Punctual</th>
                                 </tr>
                             </thead>
                             <tbody id="style-list">
-                                <tr>
-                                    <td><jsp:getProperty name="a" property="cid" /></td>
-                                </tr>
                                 
                                 <%  
-//                                    for (Attendance at : atlist) {
-//                                        out.print("<tr>");
-//                                        out.print(String.format("<td>%s</td>", at.getCid()));
-//                                        out.print(String.format("<td>%s</td>", at.getAttended_time()));
-//                                        out.print(String.format("<td>%s</td>", at.getClass_day()));
-//                                        out.print(String.format("<td>%s</td>", "x"));
-//                                        out.print("</tr>");
-//                                    }
+                                
+                                    for (Attendance at : atlist) {
+                                        out.print("<tr>");
+                                        out.print(String.format("<td>%s</td>", at.getCid()));
+                                        out.print(String.format("<td>%s</td>", at.getAttended_time()));
+                                        out.print(String.format("<td>%s</td>", at.getClass_day()));
+                                        out.print(String.format("<td>%s</td>", "x"));
+                                        out.print("</tr>");
+                                    }
                                 %>
                             </tbody>
                         </table>
