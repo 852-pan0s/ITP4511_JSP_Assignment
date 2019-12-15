@@ -31,8 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `attendance` (
   `cid` varchar(9) NOT NULL,
   `sid` varchar(9) NOT NULL,
-  `attended_time` time DEFAULT NULL,
-  `class_day` date DEFAULT NULL,
+  `attended_time` time NOT NULL,
+  `class_day` date NOT NULL,
   `is_late` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,7 +42,10 @@ CREATE TABLE `attendance` (
 
 INSERT INTO `attendance` (`cid`, `sid`, `attended_time`, `class_day`, `is_late`) VALUES
 ('ITP4507', '180000000', '08:30:00', '2019-12-14', 0),
+('ITP4507', '180000000', '08:30:00', '2019-12-15', 0),
 ('ITP4507', '180000001', '08:30:00', '2019-12-14', 0),
+('ITP4507', '180000001', '08:41:00', '2019-12-12', 1),
+('ITP4507', '180000001', '08:41:00', '2019-12-15', 1),
 ('ITP4511', '180000000', '13:41:00', '2019-12-13', 0),
 ('ITP4511', '180000001', '13:40:00', '2019-12-13', 0),
 ('ITP4511', '180099876', '13:30:00', '2019-12-13', 0);
@@ -65,10 +68,12 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`cid`, `sid`) VALUES
 ('ITP4507', '180000000'),
 ('ITP4507', '180000001'),
+('ITP4507', '180000008'),
 ('ITP4511', '180000000'),
 ('ITP4511', '180000001'),
 ('ITP4511', '180000002'),
 ('ITP4511', '180000003'),
+('ITP4511', '180000008'),
 ('ITP4511', '180099876'),
 ('ITP4909', '180000000'),
 ('ITP4909', '180000003'),
@@ -94,7 +99,8 @@ CREATE TABLE `course` (
 INSERT INTO `course` (`cid`, `name`, `hours`) VALUES
 ('ITP4507', 'Contemporary Topics in Software Engineering', '60'),
 ('ITP4511', 'Enterprise Systems Development', '60'),
-('ITP4909', 'Object Oriented Technology', '52');
+('ITP4909', 'Object Oriented Technology', '52'),
+('LAN3003', 'Chinese Presentation', '48');
 
 -- --------------------------------------------------------
 
@@ -119,6 +125,7 @@ INSERT INTO `student` (`sid`, `firstName`, `lastName`) VALUES
 ('180000003', 'John', 'Wong'),
 ('180000004', 'Kit', 'Lee'),
 ('180000005', 'Leon', 'J.'),
+('180000008', 'Pan', 'POON'),
 ('180099876', 'Ngai Kuen', 'POON');
 
 -- --------------------------------------------------------
@@ -159,7 +166,8 @@ CREATE TABLE `teach_class` (
 INSERT INTO `teach_class` (`cid`, `tid`, `start_time`, `end_time`) VALUES
 ('ITP4507', 'jesse', '08:30:00', '10:30:00'),
 ('ITP4511', 'jesse', '15:30:00', '17:30:00'),
-('ITP4909', 'jesse', '09:00:00', '11:30:00');
+('ITP4909', 'jesse', '09:00:00', '11:30:00'),
+('LAN3003', 'jesse', '08:30:00', '10:30:00');
 
 -- --------------------------------------------------------
 
@@ -184,7 +192,8 @@ INSERT INTO `user` (`uid`, `username`, `password`, `type`) VALUES
 ('180000002', 'test4', 'test', 1),
 ('180000003', 'test5', 'test', 1),
 ('180000004', 'test', 'test', 1),
-('180000005', 'test', 'test', NULL),
+('180000005', 'test', 'test', 1),
+('180000008', '180000008', 'test', 1),
 ('180099876', 'test', 'test', 1),
 ('admin', 'admin', 'admin', 3),
 ('jesse', 'jesse', 'jesse', 2);
@@ -197,7 +206,7 @@ INSERT INTO `user` (`uid`, `username`, `password`, `type`) VALUES
 -- 資料表索引 `attendance`
 --
 ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`cid`,`sid`),
+  ADD PRIMARY KEY (`cid`,`sid`,`attended_time`,`class_day`),
   ADD KEY `a_fk2_idx` (`sid`);
 
 --
@@ -229,7 +238,7 @@ ALTER TABLE `teacher`
 -- 資料表索引 `teach_class`
 --
 ALTER TABLE `teach_class`
-  ADD PRIMARY KEY (`cid`,`tid`),
+  ADD PRIMARY KEY (`cid`,`tid`,`start_time`),
   ADD KEY `tc_fk2_idx` (`tid`);
 
 --

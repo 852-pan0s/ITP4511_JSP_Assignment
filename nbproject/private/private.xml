@@ -3,13 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/src/java/ict/bean/Classes.java</file>
+            <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/generateAttendance.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/src/java/ict/bean/Attendance.java</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/accountManagement.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/classManagement.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/index.jsp</file>
+            <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/src/java/ict/bean/Course.java</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/editClass.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/login.jsp</file>
-            <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/generateReport2.jsp</file>
+            <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/src/java/ict/bean/Student.java</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/attendance.jsp</file>
             <file>file:/Users/tuningwan/Git/ITP4511_JSP_Assignment/web/generateReport.jsp</file>
         </group>
