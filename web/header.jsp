@@ -58,7 +58,7 @@
         <ul class="navbar-nav mr-auto">
             <%
                 if (user.getType() == 1) {
-                    out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>View my attendance <span class='sr-only'>(current)</span></a></li>");
+                    out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='AttendanceController'>View my attendance <span class='sr-only'>(current)</span></a></li>");
                 } else if (user.getType() == 2) {
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='RollCallController?action=classList&uid=" + user.getUid() + "'>Roll Call<span class='sr-only'>(current)</span></a></li>");
                 } else if (user.getType() == 3) {

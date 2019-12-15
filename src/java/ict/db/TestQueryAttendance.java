@@ -5,20 +5,14 @@
  */
 package ict.db;
 
+import ict.bean.User;
+import java.util.ArrayList;
+
 /**
  *
- * @author panos
+ * @author tuningwan
  */
-import ict.bean.Classes;
-import ict.bean.Student;
-import ict.bean.User;
-import ict.db.ProjDB;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
-public class TestQueryUser {
+public class TestQueryAttendance {
 
     public static void main(String[] arg) {
 
@@ -29,12 +23,15 @@ public class TestQueryUser {
         String password = "";
         ProjDB db = new ProjDB(url, username, password);
 
+        
         // Query All Customer
         ArrayList<User> list = db.queryUser();
-        System.out.println("---Query All Customers---");
+        System.out.println("---Query All Attendance---");
         for (User u : list) {
             System.out.println("ID: " + u.getUid());
         }
+        
+        
 //        Classes c = db.queryClassByTid("jesse");
 //        System.out.println("Class ID: " +c.getTid());
 //        for(Student s: c.getStudents()){

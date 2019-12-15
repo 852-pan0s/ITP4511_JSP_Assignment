@@ -4,6 +4,7 @@
     Author     : tuningwan
 --%>
 
+<%@page import="ict.bean.Attendance"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,11 +14,13 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
+        <%--<jsp:useBean id="atlist" scope="request"  class="java.util.ArrayList<ict.bean.Attendance>" />--%>
+        <jsp:useBean id="a" scope="request"  class="ict.bean.Attendance" />
         <div class="container">
-            <form method="post" action="RollCallController">
+            <form method="post" action="">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4">Choose your class.</h1>
+                        <h1 class="display-4">Your attendance.</h1>
                         <button type="button" class="btn btn-primary" id="btn-new-style" href="#" role="button" data-toggle="modal"
                                 data-target="#newStyleModal" data-toggle="tooltip" data-placement="right"
                                 title="Click to add a new style.">Show Schedule</button>
@@ -26,22 +29,34 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th>Attended Time</th>
+                                    <th>Attended Date</th>
+                                    <th>Puntual</th>
                                 </tr>
                             </thead>
                             <tbody id="style-list">
+                                <tr>
+                                    <td><jsp:getProperty name="a" property="cid" /></td>
+                                </tr>
                                 
+                                <%  
+//                                    for (Attendance at : atlist) {
+//                                        out.print("<tr>");
+//                                        out.print(String.format("<td>%s</td>", at.getCid()));
+//                                        out.print(String.format("<td>%s</td>", at.getAttended_time()));
+//                                        out.print(String.format("<td>%s</td>", at.getClass_day()));
+//                                        out.print(String.format("<td>%s</td>", "x"));
+//                                        out.print("</tr>");
+//                                    }
+                                %>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <input type='hidden' name="action" value="save">
-                <br>
-
             </form>
         </div>
 
+        
         <!-- Change User Type Modal -->
         <div class="modal fade" id="newStyleModal" tabindex="-1" role="dialog" aria-labelledby="new-style"
              aria-hidden="true">

@@ -10,5 +10,32 @@ package ict.bean;
  * @author panos
  */
 public class Teacher {
+    private String tid;
+    private String name;
+
+    public Teacher() {
+    }
+
+    public Teacher(String tid, String name) {
+        this.tid = tid;
+        this.name = name;
+    }
+    
+    public String getTid() {
+        return tid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     
 }
