@@ -4,11 +4,30 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/servlet/LoginController.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/servlet/AttendanceController.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/db/TestQueryUser.java</file>
             <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/login.jsp</file>
-            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/servlet/RollCallController.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/db/TestQueryAttendance.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/header.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/bean/Course.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/bean/Student.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/servlet/ManageAccountController.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/bean/Classes.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/classList.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/index.jsp</file>
             <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/WEB-INF/web.xml</file>
             <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/db/ProjDB.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/servlet/RollCallController.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/attendance.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/classManagement.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/nbproject/build-impl.xml</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/editUser.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/bean/Teacher.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/roll_call.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/accountManagement.jsp</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/web/editClass.jsp</file>
             <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/bean/User.java</file>
+            <file>file:/A:/Development/Workspace/NetBeans/ITP4511_JSP_Assignment/src/java/ict/servlet/ManageClassController.java</file>
         </group>
     </open-files>
 </project-private>
