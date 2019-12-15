@@ -62,7 +62,7 @@
                 } else if (user.getType() == 2) {
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='RollCallController?action=classList&uid=" + user.getUid() + "'>Roll Call<span class='sr-only'>(current)</span></a></li>");
                 } else if (user.getType() == 3) {
-                    out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='accountManagement.jsp'>Manage Account<span class='sr-only'>(current)</span></a></li>");
+                    out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='ManageAccountController?action=getAllAccount'>Manage Account<span class='sr-only'>(current)</span></a></li>");
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>Manage Course<span class='sr-only'>(current)</span></a></li>");
                     out.print("<li class='nav-item  btn btn-outline-primary'> <a class='nav-link' href='#'>Manage Class<span class='sr-only'>(current)</span></a></li>");
 

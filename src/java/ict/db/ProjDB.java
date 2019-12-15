@@ -107,6 +107,42 @@ public class ProjDB {
         return DriverManager.getConnection(dburl, dbUser, dbPassword);
     }
 
+     public User queryUserById(String uid) {
+          Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        User u = null;
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT * FROM user WHERE uid = ?";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            pStmnt.setString(1, uid);
+            //4. excete the query and assign to the result
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                u = new User();
+                // set the record detail to the customer bean
+                u.setUid(rs.getString("uid"));
+                u.setUsername(rs.getString("username"));
+                u.setType(rs.getInt("type"));
+                u.setPassword(rs.getString("password"));
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return u;
+     }
+    
     public ArrayList<User> queryUser() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
