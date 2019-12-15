@@ -28,6 +28,7 @@
                             <button class='btn btn-primary' id="search" type="button">Search History by date</button>
                             <br>
                             <br>Start Time: <%out.print(String.format("<input type='text' name ='sTime' id='sTime' value='%s' readonly>", roll.getStartTime()));%> </p>
+                         <a class='btn btn-primary' id="search" type="button">Generate report</a>
                         <hr class="my-4">
                         <button  class='btn btn-primary btn-lg'>Save</button>
                         <hr class="my-4">

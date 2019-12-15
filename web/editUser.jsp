@@ -29,7 +29,8 @@
                         data-target="#menuModal" data-toggle="tooltip" data-placement="right"
                         title="Click to add a new food set menu.">New Food Set Menu</a> -->
                     <hr class="my-4">
-                    <form>
+                    <form action='ManageAccountController' method='get'>
+                        <input type='hidden' name='action' value="newAc">
                         <%
                             if (eAdmin.getType() == 1) {
                                 out.print("<input type='hidden' name='editUser' value='student'>");
