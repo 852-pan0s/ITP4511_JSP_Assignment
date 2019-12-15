@@ -5,7 +5,10 @@
  */
 package ict.servlet;
 
+import ict.bean.Classes;
 import ict.bean.Attendance;
+import ict.bean.Course;
+import ict.bean.Student;
 import ict.db.ProjDB;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,14 +45,18 @@ public class GenerateController extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Attendance> atlist = new ArrayList();
-        atlist.add(new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-13", 0));
-        atlist.add(new Attendance("ITP4511", "180000000", "13:51:00", "2019-12-14", 1));
-        atlist.add(new Attendance("ITP4511", "180000000", "13:41:00", "2019-12-15", 0));
+        atlist.add(new Attendance("ITP4506", "180000002", "200", "400", 0));
+        atlist.add(new Attendance("ITP4511", "180000001", "100", "300", 1));
+        atlist.add(new Attendance("ITP4507", "180000000", "120", "400", 0));
+//        String cid, String sid, String attended_time, String class_day, int is_late
+        
+//        ArrayList<Classes> c = new ArrayList();
+//        c.add(new Classes("ITP4511",  ))
+//                (String cid, String tid, ArrayList<Student> students, String startTime, String endTime, String day, String name)
         
         
-        
-//        request.setAttribute("atlist", atlist);
-        String targetURL = "attendance.jsp";
+        request.setAttribute("atlist2", atlist);
+        String targetURL = "generateAttendance.jsp";
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/" + targetURL);
         rd.forward(request, response);

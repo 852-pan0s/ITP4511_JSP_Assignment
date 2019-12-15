@@ -4,6 +4,7 @@
     Author     : tuningwan
 --%>
 
+<%@page import="ict.bean.Attendance"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,7 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
+        <jsp:useBean id="atlist2" scope="request"  class="java.util.ArrayList<ict.bean.Attendance>" />
         <div class="container">
             <form method="post" action="">
                 <div class="jumbotron jumbotron-fluid">
@@ -24,12 +26,20 @@
                                 <tr>
                                     <th>Student</th>
                                     <th>Code</th>
-                                    <th>Total Attended Time</th>
-                                    <th>Total Absent/Late time</th>
+                                    <th>Total Lesson Time</th>
+                                    <th>Total Attendance</th>
                                 </tr>
                             </thead>
                             <tbody id="style-list">
-                                
+                                <%                                    for (Attendance at : atlist2) {
+                                        out.print("<tr>");
+                                        out.print(String.format("<td>%s</td>", at.getSid()));
+                                        out.print(String.format("<td>%s</td>", at.getCid()));
+                                        out.print(String.format("<td>%s</td>", at.getClass_day()));
+                                        out.print(String.format("<td>%s</td>", at.getAttended_time()));
+                                        out.print("</tr>");
+                                    }
+                                %>
                             </tbody>
                         </table>
                     </div>

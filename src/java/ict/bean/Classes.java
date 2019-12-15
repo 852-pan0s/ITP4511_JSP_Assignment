@@ -23,6 +23,18 @@ public class Classes {
     public Classes() {
     }
 
+    public Classes(String cid, String tid, ArrayList<Student> students, String startTime, String endTime, String day, String name) {
+        this.cid = cid;
+        this.tid = tid;
+        this.students = students;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.day = day;
+        this.name = name;
+    }
+    
+    
+
     public String getCid() {
         return cid;
     }
