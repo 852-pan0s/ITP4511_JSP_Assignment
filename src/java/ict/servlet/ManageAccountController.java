@@ -59,7 +59,7 @@ public class ManageAccountController extends HttpServlet {
             ArrayList<Course> eCourses = db.queryAllCourse();
             Student s = new Student();
             s.setType(1);
-            s.setUid("180000008");
+            s.setUid("180000009");
             s.setFirstName("");
             s.setLastName("");
             request.setAttribute("eAdmin", s);
@@ -76,7 +76,7 @@ public class ManageAccountController extends HttpServlet {
             Teacher t = new Teacher();
             t.setType(2);
             t.setName("");
-            t.setUid("t01");
+            t.setUid("180000009");
             
             request.setAttribute("eTeacher", t);
             request.setAttribute("eAdmin", t);
@@ -90,7 +90,7 @@ public class ManageAccountController extends HttpServlet {
             ArrayList<Course> eCourses = db.queryAllCourse();
             User u = new User();
             u.setType(3);
-            u.setUid("admin2");
+            u.setUid("180000009");
             request.setAttribute("eAdmin", u);
             request.setAttribute("eCoursesStudent", eCoursesStudent);
             request.setAttribute("eCourses", eCourses);
@@ -133,7 +133,7 @@ public class ManageAccountController extends HttpServlet {
              out.println("</body>");
              out.println("</html>");
              }*/
-        }
+        } 
 
     }
 
