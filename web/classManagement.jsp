@@ -1,10 +1,9 @@
 <%-- 
-    Document   : classList
-    Created on : 2019年12月14日, 下午09:32:58
+    Document   : classManagement
+    Created on : 2019年12月15日, 下午05:22:47
     Author     : panos
 --%>
 
-<%@page import="ict.bean.Classes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +13,7 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <jsp:useBean id="classList" scope="request"  class="java.util.ArrayList<ict.bean.Classes>" />
+        <jsp:useBean id="mClassList" scope="request"  class="java.util.ArrayList<ict.bean.Classes>" />
         <div class="container">
             <form method="post" action="RollCallController">
                 <div class="jumbotron jumbotron-fluid">

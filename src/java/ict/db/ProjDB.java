@@ -6,7 +6,9 @@
 package ict.db;
 
 import ict.bean.Classes;
+import ict.bean.Course;
 import ict.bean.Student;
+import ict.bean.Teacher;
 import ict.bean.User;
 import java.io.IOException;
 import java.sql.*;
@@ -29,7 +31,7 @@ public class ProjDB {
         this.dbUser = dbUser;
         this.dbPassword = dbPassword;
     }
-    
+
     public User login(String user, String pwd) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -57,7 +59,7 @@ public class ProjDB {
             while (ex != null) {
                 ex.printStackTrace();
                 ex = ex.getNextException();
-                System.out.println(ex+"");
+                System.out.println(ex + "");
                 System.out.println("fk");
             }
         } catch (IOException ex) {
@@ -107,8 +109,113 @@ public class ProjDB {
         return DriverManager.getConnection(dburl, dbUser, dbPassword);
     }
 
-     public User queryUserById(String uid) {
-          Connection cnnct = null;
+    public Teacher queryTeacherByUser(User u) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        Teacher t = null;
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT * FROM teacher WHERE tid = ?";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            pStmnt.setString(1, u.getUid());
+            //4. excete the query and assign to the result
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                t = new Teacher(u);
+                // set the record detail to the customer bean
+                t.setName(rs.getString("name"));
+                t.setClasses(queryClassByTid(u.getUid()));
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return t;
+    }
+    
+    public Student queryStudentByUser(User u) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        Student s = null;
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT * FROM student WHERE sid = ?";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            pStmnt.setString(1, u.getUid());
+            //4. excete the query and assign to the result
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                s = new Student(u);
+                // set the record detail to the customer bean
+                s.setFirstName(rs.getString("firstName"));
+                s.setLastName(rs.getString("lastName"));
+                s.setCourses(queryCourseBySid(u.getUid()));
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return s;
+    }
+    
+    public ArrayList<Course> queryCourseBySid(String sid){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        ArrayList<Course> list = new ArrayList<Course>();
+        Course c = null;
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT co.cid, co.name, co.hours FROM class c, student s, course co WHERE co.cid = c.cid and c.sid = s.sid and c.sid = ?";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //3.update the placehoders with username and pwd
+            pStmnt.setString(1, sid);
+            //4 execctue the query and assign to the result
+            ResultSet rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                c = new Course();
+                c.setHours(rs.getInt("hours"));
+                c.setCid(rs.getString("cid"));
+                c.setName(rs.getString("name"));
+                list.add(c);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+
+    public User queryUserById(String uid) {
+        Connection cnnct = null;
         PreparedStatement pStmnt = null;
 
         User u = null;
@@ -141,8 +248,8 @@ public class ProjDB {
             ex.printStackTrace();
         }
         return u;
-     }
-    
+    }
+
     public ArrayList<User> queryUser() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -166,6 +273,44 @@ public class ProjDB {
                 u.setType(rs.getInt("type"));
                 u.setPassword(rs.getString("password"));
                 list.add(u);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+    
+     
+    
+    public ArrayList<Course> queryAllCourse() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        Course c = null;
+        ArrayList<Course> list = new ArrayList();
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT * FROM course";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            //4. excete the query and assign to the result
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                c = new Course();
+                // set the record detail to the customer bean
+                c.setCid(rs.getString("cid"));
+                c.setName(rs.getString("name"));
+                c.setHours(rs.getInt("hours"));
+                list.add(c);
             }
             pStmnt.close();
             cnnct.close();
@@ -360,8 +505,5 @@ public class ProjDB {
         }
         return isSuccess;
     }
-    
-    
-
 
 }

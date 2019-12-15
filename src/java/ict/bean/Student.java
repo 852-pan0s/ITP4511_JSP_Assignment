@@ -5,6 +5,8 @@
  */
 package ict.bean;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author panos
@@ -13,6 +15,7 @@ public class Student extends User{
     private String firstName;
     private String lastName;
     private boolean isLate;
+    private ArrayList<Course> courses;
 
     public boolean isIsLate() {
         return isLate;
@@ -43,9 +46,26 @@ public class Student extends User{
     public Student() {
     }
 
-    public Student(String firstName, String lastName) {
+    public Student(String firstName, String lastName, boolean isLate, ArrayList<Course> courses) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.isLate = isLate;
+        this.courses = courses;
     }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }
+    
+      public Student(User u){
+        super(u);
+    }
+
+
+    
     
 }

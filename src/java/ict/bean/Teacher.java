@@ -5,13 +5,16 @@
  */
 package ict.bean;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author panos
  */
-public class Teacher {
+public class Teacher extends User{
     private String tid;
     private String name;
+    private ArrayList<Classes> classes;
 
     public Teacher() {
     }
@@ -36,6 +39,17 @@ public class Teacher {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ArrayList<Classes> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(ArrayList<Classes> classes) {
+        this.classes = classes;
+    }
     
+    public Teacher(User u){
+        super(u);
+    }
     
 }

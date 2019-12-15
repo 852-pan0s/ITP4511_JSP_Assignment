@@ -93,9 +93,10 @@
                         </div>
                     </form> -->
                     <!-- <hr class="my-4"> -->
-                    <a class="btn btn-primary btn-lg" id="btn-new-menu" href="#" role="button" data-toggle="modal"
-                       data-target="#menuModal" data-toggle="tooltip" data-placement="right"
-                       title="Click to add a new menu.">New Menu</a>
+
+                    <a class="btn btn-primary btn-lg" id="btn-new-menu" href="ManageAccountController?action=newStudent">New Student</a>
+                    <a class="btn btn-primary btn-lg" id="btn-new-menu" href="ManageAccountController?action=newTeacher">New Teacher</a>
+                    <a class="btn btn-primary btn-lg" id="btn-new-menu" href="ManageAccountController?action=newAdmin">New admin</a>
                     <!-- <hr class="my-4">
                     <a class="btn btn-primary btn-lg" id="btn-new-set-menu" href="#" role="button" data-toggle="modal"
                         data-target="#menuModal" data-toggle="tooltip" data-placement="right"
@@ -112,27 +113,26 @@
                             </tr>
                         </thead>
                         <tbody id="menu-list">
-                            <%
-                               for(User u: userList){
-                                   String type = "";
-                                   if(u.getType()==1){
-                                       type = "Student";
-                                   }else if(u.getType()==2){
-                                       type = "Teacher";
-                                   }else if(u.getType()==3){
-                                       type = "IT administrato";
-                                   }
-                                   out.print(String.format(""
-                                           + "<tr>"
-                                           + "<td>%s</td>"
-                                           + "<td>%s</td>"
-                                           + "<td>%s</td>"
-                                           + "<td>%s</td>"
-                                           + " <td><a href='ManageAccountController?action=edit&uid=%s' class='btn btn-outline-primary'>Edit</a></td>"
-                                   + "</tr>",u.getUid(),u.getUsername(),"****",type,u.getUid()));
-                               }
+                            <%                                for (User u : userList) {
+                                    String type = "";
+                                    if (u.getType() == 1) {
+                                        type = "Student";
+                                    } else if (u.getType() == 2) {
+                                        type = "Teacher";
+                                    } else if (u.getType() == 3) {
+                                        type = "IT administrato";
+                                    }
+                                    out.print(String.format(""
+                                            + "<tr>"
+                                            + "<td>%s</td>"
+                                            + "<td>%s</td>"
+                                            + "<td>%s</td>"
+                                            + "<td>%s</td>"
+                                            + " <td><a href='ManageAccountController?action=edit&uid=%s' class='btn btn-outline-primary'>Edit</a></td>"
+                                            + "</tr>", u.getUid(), u.getUsername(), "****", type, u.getUid()));
+                                }
                             %>
-                           
+
                         </tbody>
                     </table>
                 </div>

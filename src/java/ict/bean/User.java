@@ -35,6 +35,13 @@ public class User implements Serializable  {
     public void setType(int type) {
         this.type = type;
     }
+    
+    public User(User u){
+        uid = u.getUid();
+        username = u.getUsername();
+        password = u.getPassword();
+        type = u.getType();
+    }
 
     
     
