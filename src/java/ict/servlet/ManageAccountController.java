@@ -77,6 +77,7 @@ public class ManageAccountController extends HttpServlet {
             t.setType(2);
             t.setName("");
             t.setUid("t01");
+            
             request.setAttribute("eTeacher", t);
             request.setAttribute("eAdmin", t);
             request.setAttribute("eCoursesStudent", eCoursesStudent);

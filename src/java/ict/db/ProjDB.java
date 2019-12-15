@@ -142,7 +142,7 @@ public class ProjDB {
         }
         return t;
     }
-    
+
     public Student queryStudentByUser(User u) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -177,8 +177,8 @@ public class ProjDB {
         }
         return s;
     }
-    
-    public ArrayList<Course> queryCourseBySid(String sid){
+
+    public ArrayList<Course> queryCourseBySid(String sid) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
 
@@ -286,9 +286,7 @@ public class ProjDB {
         }
         return list;
     }
-    
-     
-    
+
     public ArrayList<Course> queryAllCourse() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -310,6 +308,44 @@ public class ProjDB {
                 c.setCid(rs.getString("cid"));
                 c.setName(rs.getString("name"));
                 c.setHours(rs.getInt("hours"));
+                list.add(c);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+
+    public ArrayList<Classes> queryAllClasses() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        Classes c = null;
+        ArrayList<Classes> list = new ArrayList();
+        try {
+            //1. get Connection
+            cnnct = getConnection();;
+            String preQueryStatement = "SELECT c.cid, tc.tid, start_time, end_time, name FROM teach_class tc, course c WHERE tc.cid = c.cid";
+            //2. get the prepare Statement
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = null;
+            //4. excete the query and assign to the result
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                c = new Classes();
+                // set the record detail to the customer bean
+                c.setCid(rs.getString("cid"));
+                c.setName(rs.getString("name"));
+                c.setStartTime(rs.getString("start_time"));
+                c.setEndTime(rs.getString("end_time"));
+                c.setTid(rs.getString("tid"));
                 list.add(c);
             }
             pStmnt.close();
@@ -492,6 +528,35 @@ public class ProjDB {
                     isSuccess = true;
                 }
                 System.out.println(preQueryStatement);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+    
+    public boolean insertClass(String cid, String tid, String sTime, String eTime){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "INSERT INTO teach_class VALUES (?, ?, ?, ?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, cid);
+            pStmnt.setString(2, tid);
+            pStmnt.setString(3, sTime);
+            pStmnt.setString(4, eTime);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
             }
             pStmnt.close();
             cnnct.close();

@@ -4,6 +4,7 @@
     Author     : panos
 --%>
 
+<%@page import="ict.bean.Classes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,25 +19,30 @@
             <form method="post" action="RollCallController">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4">Choose your class.</h1>
-                        <button type="button" class="btn btn-primary" id="btn-new-style" href="#" role="button" data-toggle="modal"
-                                data-target="#newStyleModal" data-toggle="tooltip" data-placement="right"
-                                title="Click to add a new style.">Show Schedule</button>
+                        <h1 class="display-4">Class Management</h1>
+                        <a class="btn btn-primary" href="ManageClassController?action=add">Add Class</a>
                         <hr class="my-4">
                         <table class="table table-hover" id="style-list">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Code</th>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th>Coure Name</th>
+                                    <th>Teacher</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>   
+                                    <th>Action</th>   
                                 </tr>
                             </thead>
                             <tbody id="style-list">
-                                <%                                    for (Classes c : classList) {
+                                <%                                    
+                                for (Classes c : mClassList) {
                                         out.print("<tr>");
                                         out.print(String.format("<td>%s</td>", c.getCid()));
                                         out.print(String.format("<td>%s</td>", c.getName()));
-                                        out.print(String.format("<td><a class='btn btn-outline-primary' href='RollCallController?action=rollCall&uid=%s&cid=%s'>Enter</a></td>", user.getUid(), c.getCid()));
+                                        out.print(String.format("<td>%s</td>", c.getTid()));
+                                        out.print(String.format("<td>%s</td>", c.getStartTime()));
+                                        out.print(String.format("<td>%s</td>", c.getEndTime()));
+                                        out.print(String.format("<td><a class='btn btn-outline-primary' href='ManageClassController?action=edit&cid=%s&tid=%s'>Edit</a></td>",c.getCid(),c.getTid()));
                                         out.print("</tr>");
                                     }
                                 %>
